@@ -1,4 +1,4 @@
- 
+package edu.mum.component.impl; 
 
 
 import java.io.BufferedWriter;
@@ -12,8 +12,13 @@ import org.springframework.stereotype.Component;
 import edu.mum.component.MessageDisplay;
 import edu.mum.component.MessageOrigin;
 
-     
-    public void display() {
+@Component
+public class FileMessageDisplay implements MessageDisplay {    
+	
+	@Autowired
+    private MessageOrigin messageOrigin;
+
+	public void display() {
         if (messageOrigin == null) {
             throw new RuntimeException(
                 "You must set the property messageSource of class:"
@@ -36,7 +41,7 @@ import edu.mum.component.MessageOrigin;
     	String path = this.getClass().getClassLoader().getResource(".").getFile();
 
     	//create file
-    	
+    	File file = new File(path + fileName);
     	try {
 			if (file.createNewFile()) {
 			    System.out.println("File is created!");
