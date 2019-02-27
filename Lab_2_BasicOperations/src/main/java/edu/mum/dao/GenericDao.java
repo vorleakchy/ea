@@ -21,6 +21,8 @@ public interface GenericDao<T> {
     
     List<T> findAll();
 
+    void refresh(T t);
     
+    void flush();
     
 }

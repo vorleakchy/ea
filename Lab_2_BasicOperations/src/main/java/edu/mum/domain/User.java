@@ -9,25 +9,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+  @Entity(name = "users")
   public class User implements Serializable  {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="USER_ID", nullable=false, unique=true)
     private Long id = null;
 
+	 @Column(name="FIRSTNAME", nullable=false) 
      private String firstName;
 
+	 @Column(name="LASTNAME", nullable=false)
      private String lastName;
 
+	 @Column(name="EMAIL", nullable=false)
      private String email;
 
+	 @Column(name="RANKING", nullable=false)
      private int ranking = 0;
 
+	 @Column(name="IS_ADMIN", nullable=false)
      private boolean admin = false;
      
      @Version
+     @Column(name="version", nullable=false)
      private int version = 0;
 
+     @Temporal(TemporalType.TIMESTAMP)
      private Date lastLogin;
      
 	public Long getId() {
@@ -92,6 +105,10 @@ import javax.persistence.Version;
 
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+	
+	public String getFullName() {
+		return firstName + " " + lastName;
 	}
 
 }

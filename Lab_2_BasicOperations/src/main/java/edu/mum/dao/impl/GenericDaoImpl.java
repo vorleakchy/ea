@@ -53,6 +53,15 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 	public T update( T entity ){
 	      return entityManager.merge( entity );
 	   }
-
+	
+	@Override
+    public void flush() {
+    	entityManager.flush();
+    } 
+    
+	@Override
+    public void refresh(T t) {
+    	entityManager.refresh(t);
+    }
 
  }
