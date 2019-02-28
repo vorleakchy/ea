@@ -17,13 +17,13 @@ public class CreditCard extends BillingDetails {
 	// Id Shared with Superclass - BillngDetails
 
  
-    @Column( name = "CC_NUMBER", nullable = false, updatable = false, length = 16)
+    @Column( name = "CC_NUMBER", nullable = true, updatable = false, length = 16)
     private String number;
 
-    @Column( name = "CC_EXP_MONTH", nullable = false, updatable = false, length = 2)
+    @Column( name = "CC_EXP_MONTH", nullable = true, updatable = false, length = 2)
     private String expMonth="";
 
-    @Column( name = "CC_EXP_YEAR", nullable = false, updatable = false, length = 4)
+    @Column( name = "CC_EXP_YEAR", nullable = true, updatable = false, length = 4)
     private String expYear="";
 
     /**

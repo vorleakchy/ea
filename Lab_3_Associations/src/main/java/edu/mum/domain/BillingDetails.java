@@ -17,6 +17,8 @@ import java.util.Date;
 @Entity
 @Table(name = "BILLING_DETAILS")
 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="ClassEntry")
 
 public abstract class BillingDetails implements Serializable, Comparable {
 

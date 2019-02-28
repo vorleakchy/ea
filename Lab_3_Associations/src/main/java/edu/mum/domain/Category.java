@@ -20,6 +20,8 @@ public class Category implements Serializable {
     @Column(name = "CATEGORY_NAME", length = 255, nullable = false)
     private String name;
 
+    @ManyToMany(fetch=FetchType.EAGER)
+//    @JoinColumn(name="ITEM_ID")
     private List<Item> items = new ArrayList<Item>();
 
     

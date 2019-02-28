@@ -26,8 +26,10 @@ public class UserCredentials {
 	String verifyPassword;
 	Boolean enabled;
 
+	@OneToOne(mappedBy="userCredentials", cascade=CascadeType.ALL)
   	private User user;
 
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
  	List<Authority> authority = new ArrayList<Authority>();
 
  	public String getUserName() {
@@ -65,6 +67,10 @@ public class UserCredentials {
 	}
 	public void setAuthority(List<Authority> authority) {
 		this.authority = authority;
+	}
+	public void addUser(User user) {
+		user.setUserCredentials(this);
+		this.user = user;
 	}
  	
 }

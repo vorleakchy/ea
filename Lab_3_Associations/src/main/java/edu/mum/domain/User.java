@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -33,14 +38,17 @@ import javax.persistence.Version;
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "RANK", nullable = false)
+    @Column(name = "RANKING", nullable = false)
     private Integer ranking = 0;
 
     @Column(name = "IS_ADMIN", nullable = false)
     private Boolean admin = false;
 
+    @OneToOne
+    @JoinColumn(name="credentials_id")
 	private UserCredentials userCredentials;
 
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     private Set<Address> addresses = new HashSet<Address>();
 
 	public Long getId() {
@@ -125,6 +133,11 @@ import javax.persistence.Version;
 
 	public void setRanking(Integer ranking) {
 		this.ranking = ranking;
+	}
+
+	public void addAddress(Address address) {
+		address.setUser(this);
+		addresses.add(address);
 	}
 
 }

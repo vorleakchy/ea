@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * The address of a User.
@@ -22,6 +24,10 @@ import javax.persistence.Id;
 @Entity
 public class Address implements Serializable {
 
+	@ManyToOne
+	@JoinColumn(name="USER_ID")
+	private User user;
+	
     @Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
      private Long id = null;
@@ -50,6 +56,15 @@ public class Address implements Serializable {
 	}
 
 	// ********************** Accessor Methods ********************** //
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}	
+	
     public Long getId() {
 		return id;
 	}

@@ -45,6 +45,8 @@ import java.util.*;
 
      private BigDecimal reservePrice;
 
+     @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+//     @JoinColumn(name="CATEGORY_ID")
      private Set<Category> categories = new HashSet<Category>();
 
     @Transient
@@ -62,11 +64,11 @@ import java.util.*;
     private Date created = new Date();
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "START_DATE", nullable = false, updatable = false)
+    @Column(name = "START_DATE", nullable = true, updatable = false)
     private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "END_DATE", nullable = false, updatable = false)
+    @Column(name = "END_DATE", nullable = true, updatable = false)
     @org.hibernate.annotations.Index(name = "IDX_END_DATE")
     private Date endDate;
 
@@ -155,6 +157,12 @@ import java.util.*;
         }
         return 0;
     }
+
+
+
+	public void addCategory(Category category) {
+		categories.add(category);
+	}
 
     // ********************** Business Methods ********************** //
 
