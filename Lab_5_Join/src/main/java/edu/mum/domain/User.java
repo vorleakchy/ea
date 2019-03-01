@@ -41,7 +41,7 @@ import org.hibernate.annotations.FetchMode;
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "RANK", nullable = false)
+    @Column(name = "RANKING", nullable = false)
     private int ranking = 0;
 
     @Column(name = "IS_ADMIN", nullable = false)
@@ -54,9 +54,7 @@ import org.hibernate.annotations.FetchMode;
     @Transient
     List<Address> addresses;
     
-    @OneToMany(  cascade = { CascadeType.PERSIST,CascadeType.MERGE})
-
-
+    @OneToMany( fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST,CascadeType.MERGE})
     List<Item> boughtItems = new ArrayList<Item>();
     
      

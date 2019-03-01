@@ -36,7 +36,7 @@ public class Main {
     System.out.println("        ********* TYPE OF FETCH GOES HERE s **********");
  
     // Initiate the fetch..............
-    List<User>  users =             ;
+    List<User>  users =  userService.findAllJoinFetch();
      
     for (User userFound : users) {
  	   System.out.println("User Name : " + userFound.getFirstName() + "  " +  userFound.getLastName() );
