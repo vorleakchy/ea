@@ -32,9 +32,11 @@ public class ItemDaoImpl extends GenericDaoImpl<Item> implements ItemDao {
 	public List<Item> findByCategoryName(String categoryName) {
 		 
 		// TODO  Replace this find ALL query with a NAMED query to find by category name
-		Query query =  entityManager.createQuery("from Item");
-
-		return (List<Item>) query.getResultList();
+//		Query query =  entityManager.createQuery("from Item i join m.categories c");
+//		return (List<Item>) query.getResultList();
+		
+		Query query = entityManager.createNamedQuery("Item.findByCategoryName");
+		return (List<Item>)query.setParameter("categoryName", categoryName).getResultList();
 	}
 
 	public List<Item> findBySellerOrBuyer(Integer initialPrice, User buyer, User seller) {
@@ -44,15 +46,22 @@ public class ItemDaoImpl extends GenericDaoImpl<Item> implements ItemDao {
 		String or = "";
 		
 		// TODO Seller Test
-		if (seller != null)	sellerPrice=  "( )";
+		if (seller != null)	sellerPrice=  " i.seller.id = :sellerId and i.initialPrice > :price ";
 		// TODO Buyer test
-		if (buyer != null)	buyerPrice=  "( )";
-		if (buyer != null && seller != null) or = "OR";
+		if (buyer != null)	buyerPrice=  " u.id = :buyerId and i.reservePrice = i.initialPrice ";
+		if (buyer != null && seller != null) or = " OR ";
 
+		System.err.println("=========================");
 		Query query = entityManager.createQuery("select distinct i from Item i, User u where "
-				+      "?????? " );
+				+ sellerPrice + or + buyerPrice );
 
-		//	TODO Set parameters here....	
+		//	TODO Set parameters here....
+		
+		if (seller != null) {
+			query.setParameter("price", price);
+			query.setParameter("sellerId", seller.getId());
+		}
+		if (buyer != null) query.setParameter("buyerId", buyer.getId());
 			     
 		return (List<Item>) query.getResultList();
 	}
@@ -73,7 +82,13 @@ public class ItemDaoImpl extends GenericDaoImpl<Item> implements ItemDao {
 
               // TODO fill in query....
 		    	
+		    	Root<User> userRoot = query.from(User.class);
+		    	Predicate andSeller = criteriaBuilder.equal(userRoot, seller);
 		    	
+		    	Predicate initialPricePredicate = criteriaBuilder.greaterThan(itemRoot.get("initialPrice"), initialPrice);
+		    	
+		    	Predicate sellerMatchPredicate = criteriaBuilder.and(andSeller, initialPricePredicate);
+		    	predicateList.add(sellerMatchPredicate);
 		    }
 		 
 		    // buyer & initial = reserve price

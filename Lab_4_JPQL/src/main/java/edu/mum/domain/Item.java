@@ -12,6 +12,8 @@ import java.util.*;
 
 
 @Entity
+@NamedQuery(name="Item.findByCategoryName", 
+	query="select c.items from Category c where c.name = :categoryName")
 @Table(name = "ITEM")
  public class Item   {
 
