@@ -24,7 +24,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
  		Query query =  entityManager.createQuery("SELECT DISTINCT u FROM User AS u JOIN FETCH u.boughtItems AS bi");
  		
 		return (List<User>)query.getResultList();
-
+// 		return (List<User>)null;
 	}
 
 

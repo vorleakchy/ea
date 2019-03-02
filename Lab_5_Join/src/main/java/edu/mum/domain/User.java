@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -54,7 +55,8 @@ import org.hibernate.annotations.FetchMode;
     @Transient
     List<Address> addresses;
     
-    @OneToMany( fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToMany(cascade = { CascadeType.PERSIST,CascadeType.MERGE})
+//    @Fetch(FetchMode.JOIN)  
     List<Item> boughtItems = new ArrayList<Item>();
     
      

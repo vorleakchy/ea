@@ -38,5 +38,6 @@ public class UserServiceImpl implements edu.mum.service.UserService {
 		 return userDao.findAllJoinFetch();
 
  	}
+	
 
 }
