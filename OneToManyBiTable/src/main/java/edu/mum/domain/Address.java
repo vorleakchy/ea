@@ -23,7 +23,7 @@ public class Address {
   	private String zipCode;
 
   	@ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable  //( name="Address_Member")
+    @JoinTable // ( name="Address_Member")
   	( name="Address_Member", joinColumns={@JoinColumn(name="ADDRESS", unique=true)},  
     inverseJoinColumns={ @JoinColumn(name="Member")} )  
  	private Member  member;
