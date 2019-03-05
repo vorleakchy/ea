@@ -23,7 +23,7 @@ public class LoggingAspect {
 	    public void logging() {}
 	
 	      // Remove "logging() &&"  AND it will do a "regular"[no annotation] execution Point cut.
-		  @Before("logging() && applicationMethod()")
+		  @Before("logging() || applicationMethod()")
 //		  @Before("execution(* *.*.*..*(..))")                  // "indiscriminate" application Try it!
 
 		  public void logResource(JoinPoint joinPoint) {
