@@ -39,7 +39,7 @@ import javax.persistence.Table;
     private String email;
 
  
-    @Column(name = "RANK", nullable = false)
+    @Column(name = "RANKING", nullable = false)
     private Integer rating = 0;
 
     @Column(name = "IS_ADMIN", nullable = false)

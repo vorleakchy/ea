@@ -20,29 +20,47 @@ public class Groups {
 	
  	public void addGroups() {
 	
- 	   // Create ADMIN Group
 
+  	   // Create ADMIN Group
+  	   Group groupAdmin = new Group();
+  	   groupAdmin.setGroup_name("ADMIN");
 
-    // Create SUPERVISOR Group
-
-
-	    
- 	    // Add LIST to both groups
-
+  	   // Create SUPERVISOR Group
+  	   Group groupSuper = new Group();
+  	   groupSuper.setGroup_name("ADMIN");
  	    
-	    //Add READ to both Groups
-
-
- 		
-	    //Add Update to Super only
- 
-
- 	   // Add users to groups
-  	
- 	   
- 	   // Save groups
- 	    groupService.save(groupAdmin);
- 	    groupService.update(groupSuper);
+  	    // Add LIST to both groups
+  	    Authority authority = new Authority();
+  	    authority.setAuthority("LIST");
+  	    groupAdmin.getAuthority().add(authority);
+  	    groupSuper.getAuthority().add(authority);
+  	     	    
+ 	    //Add READ to both Groups
+   	    authority = new Authority();
+ 	    authority.setAuthority("READ");
+ 	    groupAdmin.getAuthority().add(authority);  
+ 	    groupSuper.getAuthority().add(authority);
+  		
+ 	    //Add Update to Super only
+  	    authority = new Authority();
+ 	    authority.setAuthority("UPDATE");
+ 	    groupSuper.getAuthority().add(authority);
+ 	    
+ 	    //Add Create to Admin only
+  	    authority = new Authority();
+ 	    authority.setAuthority("CREATE");
+ 	    groupAdmin.getAuthority().add(authority);
+  
+  	   // Add users to groups
+ 	    UserCredentials seanUserCredentials = userCredentialsService.findByUserName("Sean");
+ 	    groupAdmin.getUserCredentials().add(seanUserCredentials);
+ 	    
+ 	    UserCredentials paulUserCredentials = userCredentialsService.findByUserName("Paul");
+ 	    groupSuper.getUserCredentials().add(paulUserCredentials);
+   	
+  	   // Save groups
+  	    groupService.save(groupAdmin);
+  	    groupService.update(groupSuper);
 
 
 

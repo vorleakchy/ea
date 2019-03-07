@@ -78,7 +78,9 @@ public class LoginController {
     	
         try {
         	//TODO: add Authentication
-            
+        	Authentication request = new UsernamePasswordAuthenticationToken(userName, passWord);
+            Authentication result = authenticationManager.authenticate(request);
+            SecurityContextHolder.getContext().setAuthentication(result);
             // - End of TO DO
             
             

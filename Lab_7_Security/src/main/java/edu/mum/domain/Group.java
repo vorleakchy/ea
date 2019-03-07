@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-@Entity(name="Groups")
+@Entity(name="GroupsToo")
 public class Group {
 
 	@Id
