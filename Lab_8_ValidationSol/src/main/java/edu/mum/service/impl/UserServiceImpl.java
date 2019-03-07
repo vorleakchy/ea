@@ -25,6 +25,7 @@ public class UserServiceImpl implements edu.mum.service.UserService {
  	@Autowired
 	private UserDao userDao;
 
+ 	@ServiceValidation
  	@PreAuthorize("hasAuthority('CREATE')")
      public void save( User user) {  		
   		userDao.save(user);
@@ -39,6 +40,7 @@ public class UserServiceImpl implements edu.mum.service.UserService {
 		return userDao.findByEmail(email);
 	}
 	
+	@ServiceValidation
 	@PreAuthorize("hasAuthority('UPDATE')")
   	public User update(User user) {
 		 return userDao.update(user);

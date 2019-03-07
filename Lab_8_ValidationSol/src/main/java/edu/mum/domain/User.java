@@ -17,8 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
@@ -30,18 +32,19 @@ import org.hibernate.validator.constraints.NotEmpty;
     @Column(name = "USER_ID")
     private Long id = null;
     
+    @NotEmpty @Size(min=4, max=20)
     @Column(name = "FIRSTNAME", nullable = false)
     private String firstName;
 
-
+    @NotEmpty @Size(min=4, max=20)
     @Column(name = "LASTNAME", nullable = false)
     private String lastName;
 
-
+    @Email
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
- 
+    @Min(value=8)
     @Column(name = "RANKING", nullable = false)
     private Integer rating = 0;
 

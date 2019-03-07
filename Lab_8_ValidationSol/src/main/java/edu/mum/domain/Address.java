@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 /**
@@ -35,7 +36,7 @@ public class Address implements Serializable {
     @Column(length = 255)
 	private String street;
 
- 
+    @Length(min=5, max=9)
     @Column(length = 16)
 	private String zipcode;
 
