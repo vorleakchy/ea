@@ -27,7 +27,7 @@ public class Groups {
 
   	   // Create SUPERVISOR Group
   	   Group groupSuper = new Group();
-  	   groupSuper.setGroup_name("ADMIN");
+  	   groupSuper.setGroup_name("SUPERVISOR");
  	    
   	    // Add LIST to both groups
   	    Authority authority = new Authority();
