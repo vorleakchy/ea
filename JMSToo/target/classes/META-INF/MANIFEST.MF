@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Built-By: vorleakchy
+Build-Jdk: 11.0.1
+Class-Path: dependency/spring-context-4.2.4.RELEASE.jar dependency/sprin
+ g-aop-4.2.4.RELEASE.jar dependency/aopalliance-1.0.jar dependency/sprin
+ g-beans-4.2.4.RELEASE.jar dependency/spring-core-4.2.4.RELEASE.jar depe
+ ndency/commons-logging-1.2.jar dependency/spring-expression-4.2.4.RELEA
+ SE.jar dependency/spring-jms-4.2.4.RELEASE.jar dependency/spring-messag
+ ing-4.2.4.RELEASE.jar dependency/spring-tx-4.2.4.RELEASE.jar dependency
+ /activemq-all-5.7.0.jar dependency/javax.jms-api-2.0.1.jar
+Main-Class: edu.mum.JmsSenderMain
+Created-By: Maven Integration for Eclipse
+
