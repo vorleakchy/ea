@@ -35,7 +35,7 @@ public class Address implements Serializable {
 
     @Column(length = 255)
 	private String street;
-
+    
     @Range(min=10000, max = 999999999, message= "{Range.zipcode}")
     @Column(length = 16)
 	private String zipcode;
