@@ -37,7 +37,7 @@ public class Member {
 	private String firstName;
 	
 	@Column(length = 16)
-	@EmptyOrSize(min=5, max = 9, message= "{EmptyOrSize}")
+	@Size(min=5, max = 9, message= "{EmptyOrSize}")
 	private String lastName;
 
 	@NullMinNumber(value=6)

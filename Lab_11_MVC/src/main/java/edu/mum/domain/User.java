@@ -26,6 +26,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import edu.mum.validation.EmptyOrSize;
+
 @Entity
 @Table(name = "USERS")
  public class User implements Serializable  {
@@ -33,17 +35,20 @@ import org.hibernate.validator.constraints.NotEmpty;
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "USER_ID")
     private Long id = null;
-
+ 
     @Version
     private int version = 0;
 
-
-       @Column(name = "FIRSTNAME", nullable = false)
+    @Size(min=4, max=19, message= "{Size.name}")
+    @Column(name = "FIRSTNAME", nullable = false)
     private String firstName;
-
+ 
+    @NotEmpty
        @Column(name = "LASTNAME", nullable = false)
     private String lastName;
 
+    @NotEmpty
+    @Email
      @Column(name = "EMAIL", nullable = false)
     private String email;
 
@@ -53,6 +58,7 @@ import org.hibernate.validator.constraints.NotEmpty;
     @Column(name = "IS_ADMIN", nullable = false)
     private boolean admin = false;
 
+    @Valid
   	@OneToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL) 
 	@JoinColumn(name="userId") 
 	private UserCredentials userCredentials;

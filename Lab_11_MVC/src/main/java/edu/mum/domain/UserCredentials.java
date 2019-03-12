@@ -16,21 +16,25 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import edu.mum.validation.EmptyOrSize;
+
  
 @Entity(name = "Authentication")
 public class UserCredentials {
 
+	@NotEmpty
 	 @Id
 	 @Column(name = "USER", nullable = false, unique = true, length = 127)
  	String userName;
  
+	@Size(min=8, max=20, message="{Size.name}")
  	 @Column(name = "PASSWORD", nullable = false, length = 32)
 	String password;
 	 @Column( nullable = true, length = 32)
 
 	 String verifyPassword;
 	Boolean enabled;
-
+ 
 	@OneToOne(mappedBy="userCredentials", cascade = {CascadeType.PERSIST, CascadeType.MERGE}) 
  	private User user;
 
