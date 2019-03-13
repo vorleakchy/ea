@@ -9,7 +9,7 @@ import edu.mum.domain.Item;
 
 public class ItemTransformerImpl implements ItemTransformer {
 
-	@Transformer(inputChannel="fromAmqpItem", outputChannel="processItem")
+	@Transformer(inputChannel="fromAmqpItem", outputChannel="routeItem")
 	public RouteItem transformItem(Item item) {
 		String auctionId = item.getName() + item.getVersion();
 		RouteItemType routeItemType = null;
