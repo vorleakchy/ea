@@ -10,6 +10,17 @@
 
  	<mvc:annotation-driven validator="validator"/>
  
+ 
+ 	<mvc:annotation-driven>
+ 	 	<mvc:message-converters>
+		    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		        <property name="objectMapper">
+		            <bean class="edu.mum.rest.HibernateAwareObjectMapper" />
+		        </property>
+		    </bean>
+		</mvc:message-converters>
+ 	</mvc:annotation-driven> 
+ 
  	<context:component-scan base-package="edu.mum.controller" />
  	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,3 +43,6 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
   </beans>
+
+  
+  
